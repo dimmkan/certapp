@@ -1,0 +1,70 @@
+<button class="btn btn-dark m-2" routerLink="/kkt">К списку ККТ</button>
+<form [formGroup] = "form">
+  <div class="card">
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktOrganization">Организация</label></div>
+      <div class="col-7 m-1"><input type="text" id="kktOrganization" placeholder="Организация"
+                                    formControlName="organization" class="input-field"
+                                    value="{{kkt.organization}}" [(ngModel)]="kkt.organization"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktRegNumber">Рег. номер</label></div>
+      <div class="col-7 m-1"><input type="text" id="kktRegNumber" placeholder="Рег. номер" formControlName="regNumber"
+                                    value="{{kkt.regNumber}}"
+                                    [(ngModel)]="kkt.regNumber"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktZavNumber">Заводской №</label></div>
+      <div class="col-7 m-1"><input type="text" id="kktZavNumber" placeholder="Заводской №" formControlName="zavNumber"
+                                    class="input-field"
+                                    value="{{kkt.zavNumber}}" [(ngModel)]="kkt.zavNumber"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktKktModel">Модель</label></div>
+      <div class="col-7 m-1"><input type="text" id="kktKktModel" placeholder="Модель" formControlName="kktModel" value="{{kkt.kktModel}}"
+                                    [(ngModel)]="kkt.kktModel"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktRegDate">Дата регистрации</label></div>
+      <div class="col-7 m-1"><input type="date" id="kktRegDate" placeholder="Дата регистрации"
+                                    formControlName="regDate" class="input-field"
+                                    value="{{kkt.regDate}}" [(ngModel)]="kkt.regDate"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktToDate">Срок действия</label></div>
+      <div class="col-7 m-1"><input type="date" [(ngModel)]="kkt.toDate" formControlName="toDate" id="kktToDate"
+                                    placeholder="Срок действия" value="{{kkt.toDate}}"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktToDateOF">Срок действия ОФ</label></div>
+      <div class="col-7 m-1"><input type="date" id="kktToDateOF" placeholder="Срок действия ОФ" formControlName="toDateOF"
+                                    class="input-field"
+                                    value="{{kkt.toDateOF}}" [(ngModel)]="kkt.toDateOF"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktOfd">ОФД</label></div>
+      <div class="col-7 m-1"><input type="text" id="kktOfd" placeholder="ОФД" formControlName="ofd"
+                                    value="{{kkt.ofd}}"
+                                    [(ngModel)]="kkt.ofd"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktFnModel">Модель ФН</label></div>
+      <div class="col-7 m-1"><input type="text" id="kktFnModel" placeholder="Модель ФН" formControlName="fnModel"
+                                    class="input-field"
+                                    value="{{kkt.fnModel}}" [(ngModel)]="kkt.fnModel"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktZavNumberFN">Заводской № ФН</label></div>
+      <div class="col-7 m-1"><input type="text" id="kktZavNumberFN" placeholder="Заводской № ФН" formControlName="zavNumberFN"
+                                    value="{{kkt.zavNumberFN}}" [(ngModel)]="kkt.zavNumberFN"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="kktComPortNumber">№ COM-порта</label></div>
+      <div class="col-7 m-1"><input type="text" id="kktComPortNumber" placeholder="№ COM-порта" formControlName="comPortNumber"
+                                    value="{{kkt.comPortNumber}}" [(ngModel)]="kkt.comPortNumber"></div>
+    </div>
+  </div>
+</form>
+<button class="btn btn-dark" (click)="deleteKkt()">Удалить ККТ</button>
+<button class="btn btn-dark" (click)="updateKkt()" [disabled]="form.invalid">Изменить ККТ</button>
+

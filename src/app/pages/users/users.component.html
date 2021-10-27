@@ -1,0 +1,22 @@
+<div class="col-12">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Password</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of usersService.users; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <a [routerLink]="['/users',user.id]">{{ user.id }}</a>
+      </td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.password}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

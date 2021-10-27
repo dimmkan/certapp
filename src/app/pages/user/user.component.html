@@ -1,0 +1,13 @@
+<button class="btn btn-dark" routerLink="/users">К списку пользователей</button>
+<div class="card">
+  <div class="row">
+    <div class="left-column"><label for="userName">Имя пользователя</label></div>
+    <div class="right-column"><input type="text" id="userName" placeholder="Name" class="input-field" value="{{user.name}}" [(ngModel)]="user.name"></div>
+  </div>
+  <div class="row">
+    <div class="left-column"><label for="userPassword">Пароль</label></div>
+    <div class="right-column"><input type="text" id="userPassword" placeholder="Password" value="{{user.password}}" [(ngModel)]="user.password"></div>
+  </div>
+</div>
+<button class="btn btn-dark" (click)="deleteUser()">Удалить пользователя</button>
+<button class="btn btn-dark" (click)="updateUser()">Изменить пользователя</button>

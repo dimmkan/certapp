@@ -1,0 +1,64 @@
+<button class="btn btn-dark m-2" routerLink="/eds">К списку ЭЦП</button>
+<form [formGroup] = "form">
+  <div class="card">
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsOrganization">Организация</label></div>
+      <div class="col-7 m-1"><input type="text" id="edsOrganization" placeholder="Организация"
+                                    formControlName="organization" class="input-field"
+                                    value="{{eds.organization}}" [(ngModel)]="eds.organization"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsPosition">Должность</label></div>
+      <div class="col-7 m-1"><input type="text" id="edsPosition" placeholder="Должность" formControlName="position"
+                                    value="{{eds.position}}"
+                                    [(ngModel)]="eds.position"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsFullname">ФИО</label></div>
+      <div class="col-7 m-1"><input type="text" id="edsFullname" placeholder="ФИО" formControlName="fullname"
+                                    class="input-field"
+                                    value="{{eds.fullname}}" [(ngModel)]="eds.fullname"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsINN">ИНН</label></div>
+      <div class="col-7 m-1"><input type="text" id="edsINN" placeholder="ИНН" formControlName="inn" value="{{eds.inn}}"
+                                    [(ngModel)]="eds.inn"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsCertificateSerial">Сер. номер сертификата</label></div>
+      <div class="col-7 m-1"><input type="text" id="edsCertificateSerial" placeholder="Сер. номер сертификата"
+                                    formControlName="certificateSerial" class="input-field"
+                                    value="{{eds.certificateSerial}}" [(ngModel)]="eds.certificateSerial"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsVendor">Поставщик</label></div>
+      <div class="col-7 m-1"><input type="text" [(ngModel)]="eds.vendor" formControlName="vendor" id="edsVendor"
+                                    placeholder="Поставщик" value="{{eds.vendor}}"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsUsingType">Применение</label></div>
+      <div class="col-7 m-1"><input type="text" id="edsUsingType" placeholder="Применение" formControlName="usageType"
+                                    class="input-field"
+                                    value="{{eds.usageType}}" [(ngModel)]="eds.usageType"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsFromDate">Действителен с</label></div>
+      <div class="col-7 m-1"><input type="date" id="edsFromDate" placeholder="Действителен с" formControlName="fromDate"
+                                    value="{{eds.fromDate}}"
+                                    [(ngModel)]="eds.fromDate"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsToDate">Действителен по</label></div>
+      <div class="col-7 m-1"><input type="date" id="edsToDate" placeholder="Действителен по" formControlName="toDate"
+                                    class="input-field"
+                                    value="{{eds.toDate}}" [(ngModel)]="eds.toDate"></div>
+    </div>
+    <div class="row">
+      <div class="col-1 m-1"><label for="edsComment">Комментарий</label></div>
+      <div class="col-7 m-1"><input type="text" id="edsComment" placeholder="Комментарий" formControlName="comment"
+                                    value="{{eds.comment}}" [(ngModel)]="eds.comment"></div>
+    </div>
+  </div>
+</form>
+<button class="btn btn-dark" (click)="deleteEds()">Удалить ЭЦП</button>
+<button class="btn btn-dark" (click)="updateEds()" [disabled]="form.invalid">Изменить ЭЦП</button>

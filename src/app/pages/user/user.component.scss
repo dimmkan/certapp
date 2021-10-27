@@ -1,0 +1,21 @@
+.row {
+  margin: 10px 0;
+}
+
+.left-column {
+  display: inline-block;
+  width: 250px;
+}
+
+.right-column {
+  display: inline-block;
+  width: 750px;
+}
+
+label {
+  display:flex;
+}
+
+label input {
+  margin-left:5px;
+}
