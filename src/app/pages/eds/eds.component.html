@@ -1,0 +1,185 @@
+<div class="row">
+  <div class="col-sm-1 offset-11">
+    <button class="btn btn-dark mb-2 mr-2" style="margin: 3px" (click)="openModal(content)">Добавить</button>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-11 table-responsive">
+    <table class="table m-1">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Организация</th>
+        <th scope="col">Должность</th>
+        <th scope="col">ФИО</th>
+        <th scope="col">ИНН</th>
+        <th scope="col">Сер.номер сертификата</th>
+        <th scope="col">Поставщик</th>
+        <th scope="col">Применение</th>
+        <th scope="col">Срок с</th>
+        <th scope="col" (click)="edsService.sortEds('toDate', edsSortToDate); edsSortToDate = !edsSortToDate">Срок до</th>
+        <th scope="col">Примечание</th>
+        <th scope="col">Файл</th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"><input type="text" [(ngModel)]="edsFilter.organization" placeholder="Организация"></th>
+        <th scope="col"><input type="text" [(ngModel)]="edsFilter.position" placeholder="Должность"></th>
+        <th scope="col"><input type="text" [(ngModel)]="edsFilter.fullname" placeholder="ФИО"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"><input type="text" [(ngModel)]="edsFilter.vendor" placeholder="Поставщик"></th>
+        <th scope="col"><input type="text" [(ngModel)]="edsFilter.usageType" placeholder="Применение"></th>
+        <th scope="col"><input type="date" [(ngModel)]="edsFilter.fromDate" placeholder="Срок с"></th>
+        <th scope="col"><input type="date" [(ngModel)]="edsFilter.toDate" placeholder="Срок по"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let eds of edsService.edses
+      | filterBy: edsFilter
+      | paginate: {
+        itemsPerPage: 10,
+        currentPage: currentPg
+      } ; index as i
+      ">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <a [routerLink]="['/eds',eds.id]">{{ eds.id }}</a>
+        </td>
+        <td>{{ eds.organization }}</td>
+        <td>{{ eds.position}}</td>
+        <td>{{ eds.fullname }}</td>
+        <td>{{ eds.inn}}</td>
+        <td>{{ eds.certificateSerial }}</td>
+        <td>{{ eds.vendor}}</td>
+        <td>{{ eds.usageType}}</td>
+        <td>{{ eds.fromDate | date: "dd.MM.y"}}</td>
+        <td>{{ eds.toDate | date: "dd.MM.y"}}</td>
+        <td>{{ eds.comment}}</td>
+        <td>
+          <div class="row justify-content-end">
+            <button
+              *ngIf="eds.fileName"
+              type="button" class="close" aria-label="Закрыть"
+              (click)="deleteFile($event)">
+              <span aria-hidden="true" id="df{{eds.id}}">&times;</span>
+            </button>
+          </div>
+          <div class="row">
+            <a *ngIf="eds.fileName"
+               href="http://certapi.vybor.local/eds/downloadfile/{{eds.id}}">{{eds.fileName}}</a>
+          </div>
+          <input
+            style="display: none"
+            type="file" (change)="onFileChanged($event)"
+            id="f{{eds.id}}"
+            #qInput>
+          <button *ngIf="!eds.fileName" class="btn btn-outline-dark btn-sm" (click)="qInput.click()">
+            Загрузить
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="row justify-content-center">
+      <div class="col-5"><pagination-controls previousLabel="Предыдущая" nextLabel="Следующая" (pageChange)="currentPg = $event"></pagination-controls></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Новый сертификат</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row justify-content-center">
+      <div class="col-8 m-1">
+        <form [formGroup]="form" (ngSubmit)="addEds()">
+          <div class="form-group row">
+            <label for="inputOrganization" class="col-sm-2 col-form-label">Организация</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputOrganization" placeholder="Организация"
+                     formControlName="organization">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPosition" class="col-sm-2 col-form-label">Должность</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputPosition" placeholder="Должность"
+                     formControlName="position">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputFullname" class="col-sm-2 col-form-label">ФИО</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputFullname" placeholder="ФИО" formControlName="fullname">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputINN" class="col-sm-2 col-form-label">ИНН</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputINN" placeholder="ИНН" formControlName="inn">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputCertificateSerial" class="col-sm-2 col-form-label">Сер. номер</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputCertificateSerial" placeholder="Сер. номер"
+                     formControlName="certificateSerial">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputVendor" class="col-sm-2 col-form-label">Поставщик</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputVendor" placeholder="Поставщик" formControlName="vendor">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputUsingType" class="col-sm-2 col-form-label">Применение</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputUsingType" placeholder="Применение"
+                     formControlName="usageType">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputFromDate" class="col-sm-2 col-form-label">Действует с</label>
+            <div class="col-sm-10">
+              <input type="date" class="form-control" id="inputFromDate" placeholder="Действует с"
+                     formControlName="fromDate">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputToDate" class="col-sm-2 col-form-label">Действует по</label>
+            <div class="col-sm-10">
+              <input type="date" class="form-control" id="inputToDate" placeholder="Действует по"
+                     formControlName="toDate">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputComment" class="col-sm-2 col-form-label">Комментарий</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputComment" placeholder="Комментарий"
+                     formControlName="comment">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-dark" [disabled]="form.invalid">Добавить сертификат</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-dark" (click)="modal.close()">Закрыть</button>
+  </div>
+</ng-template>

@@ -1,0 +1,45 @@
+<nav class="navbar">
+  <h3>
+    <a [routerLink]="['/']">Управление сертификатами</a>
+  </h3>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a [routerLink]="['/']">На главную</a>
+    </li>
+    <li *ngIf="authService.isAuthenticated()" routerLinkActive="active"><a [routerLink]="['/users']">Список пользователей</a></li>
+    <li *ngIf="authService.isAuthenticated()" routerLinkActive="active"><a [routerLink]="['/eds']">Сертификаты ЭЦП</a></li>
+    <li *ngIf="authService.isAuthenticated()" routerLinkActive="active"><a [routerLink]="['/kkt']">Сертификаты ККТ</a></li>
+    <li *ngIf="authService.isAuthenticated()"><button class="btn btn-dark" (click)="authService.logout()">Выйти</button></li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>
+
+<div *ngIf="!authService.isAuthenticated()" class="card">
+  <div class="row col-md-12 offset-md-3">
+    <div class="col-4">
+      <form [formGroup] = "form" (ngSubmit)="authService.login()" >
+        <div class="form-group row">
+          <label for="inputUserLogin" class="col-sm-2 col-form-label">Логин</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputUserLogin" placeholder="Логин" formControlName="login" [(ngModel)]="authService.userLogin">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPosition" class="col-sm-2 col-form-label">Пароль</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPosition" placeholder="Пароль" formControlName="password" [(ngModel)]="authService.userPw">
+          </div>
+        </div>
+        <div *ngIf="authService.isErrored()" class="alert alert-danger offset-md-2" role="alert">
+          Неверный логин или пароль!
+        </div>
+        <div class="form-group row offset-md-6">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-dark" [disabled]="form.invalid">Войти</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

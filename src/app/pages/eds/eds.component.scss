@@ -1,0 +1,29 @@
+.col-11 {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #666666;
+  border-radius: 5px;
+}
+
+.col-8 {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #666666;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+table{
+  font-size: 12px;
+}
+
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+
+  &.ng-valid.ng-touched {
+    border: 1px solid green;
+  }
+}
+
