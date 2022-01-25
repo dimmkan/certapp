@@ -35,7 +35,7 @@ export class EdsItemComponent implements OnInit {
       organization: new FormControl('', Validators.required),
       position: new FormControl(null),
       fullname: new FormControl('', Validators.required),
-      accountId: new FormControl(0, Validators.required),
+      accountId: new FormControl(null),
       inn: new FormControl('', Validators.required),
       certificateSerial: new FormControl('', Validators.required),
       vendor: new FormControl('', Validators.required),
