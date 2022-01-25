@@ -7,6 +7,7 @@ export interface Edses {
   organization: string,
   position: string,
   fullname: string,
+  accountId: number,
   inn: string,
   certificateSerial: string,
   vendor: string,
@@ -24,7 +25,6 @@ export class EdsService{
   constructor(
     public http: HttpClient,
     public router: Router,
-    private route: ActivatedRoute
   ) {
     this.reloadEdses()
   }

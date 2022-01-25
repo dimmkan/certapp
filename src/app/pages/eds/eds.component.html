@@ -14,6 +14,7 @@
         <th scope="col">Организация</th>
         <th scope="col">Должность</th>
         <th scope="col">ФИО</th>
+        <th scope="col">Номер аккаунта</th>
         <th scope="col">ИНН</th>
         <th scope="col">Сер.номер сертификата</th>
         <th scope="col">Поставщик</th>
@@ -29,6 +30,7 @@
         <th scope="col"><input type="text" [(ngModel)]="edsFilter.organization" placeholder="Организация"></th>
         <th scope="col"><input type="text" [(ngModel)]="edsFilter.position" placeholder="Должность"></th>
         <th scope="col"><input type="text" [(ngModel)]="edsFilter.fullname" placeholder="ФИО"></th>
+        <th scope="col"><input type="text" [(ngModel)]="edsFilter.accountId" placeholder="Номер аккаунта"></th>
         <th scope="col"></th>
         <th scope="col"></th>
         <th scope="col"><input type="text" [(ngModel)]="edsFilter.vendor" placeholder="Поставщик"></th>
@@ -54,6 +56,7 @@
         <td>{{ eds.organization }}</td>
         <td>{{ eds.position}}</td>
         <td>{{ eds.fullname }}</td>
+        <td>{{ eds.accountId}}</td>
         <td>{{ eds.inn}}</td>
         <td>{{ eds.certificateSerial }}</td>
         <td>{{ eds.vendor}}</td>
@@ -121,6 +124,12 @@
             <label for="inputFullname" class="col-sm-2 col-form-label">ФИО</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="inputFullname" placeholder="ФИО" formControlName="fullname">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputFullname" class="col-sm-2 col-form-label">Номер аккаунта</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputAccountId" placeholder="Номер аккаунта" formControlName="accountId">
             </div>
           </div>
           <div class="form-group row">

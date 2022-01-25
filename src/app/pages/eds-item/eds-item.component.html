@@ -20,6 +20,12 @@
                                     value="{{eds.fullname}}" [(ngModel)]="eds.fullname"></div>
     </div>
     <div class="row">
+      <div class="col-1 m-1"><label for="edsFullname">Номер аккаунта</label></div>
+      <div class="col-7 m-1"><input type="text" id="edsAccountId" placeholder="Номер аккаунта" formControlName="accountId"
+                                    class="input-field"
+                                    value="{{eds.accountId}}" [(ngModel)]="eds.accountId"></div>
+    </div>
+    <div class="row">
       <div class="col-1 m-1"><label for="edsINN">ИНН</label></div>
       <div class="col-7 m-1"><input type="text" id="edsINN" placeholder="ИНН" formControlName="inn" value="{{eds.inn}}"
                                     [(ngModel)]="eds.inn"></div>
