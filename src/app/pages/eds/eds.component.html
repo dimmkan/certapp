@@ -14,7 +14,7 @@
         <th scope="col">Организация</th>
         <th scope="col">Должность</th>
         <th scope="col">ФИО</th>
-        <th scope="col">Номер аккаунта</th>
+        <th scope="col" (click)="edsService.sortEds('accountId', edsSortAccountId); edsSortAccountId = !edsSortAccountId">Номер аккаунта</th>
         <th scope="col">ИНН</th>
         <th scope="col">Сер.номер сертификата</th>
         <th scope="col">Поставщик</th>
