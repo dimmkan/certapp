@@ -40,7 +40,7 @@ export class EdsComponent implements OnInit {
 
   addEds() {
     const formData = <Edses>{...this.form.value}
-    this.edsService.http.post(`http://certapi.vybor.local/eds/add`, {
+    this.edsService.http.post(`http://nodecertapi.vybor.local:3000/eds/add`, {
       organization: formData.organization,
       position: formData.position,
       fullname: formData.fullname,
@@ -67,7 +67,7 @@ export class EdsComponent implements OnInit {
   deleteFile($event: MouseEvent) {
     //@ts-ignore
     let id = $event.target.id.substr(2)
-    this.edsService.http.delete(`http://certapi.vybor.local/eds/deletefile/${id}`)
+    this.edsService.http.delete(`http://nodecertapi.vybor.local:3000/eds/deletefile/${id}`)
       .subscribe(
         response => {
           this.edsService.reloadEdses()
@@ -82,7 +82,7 @@ export class EdsComponent implements OnInit {
     const id = $event.target.id.substr(1)
     const uploadData = new FormData();
     uploadData.append('file', selectedFile, selectedFile.name)
-    this.edsService.http.post(`http://certapi.vybor.local/eds/addfile/${id}`, uploadData)
+    this.edsService.http.post(`http://nodecertapi.vybor.local:3000/eds/addfile/${id}`, uploadData)
       .subscribe(response => {
           this.edsService.reloadEdses()
         }

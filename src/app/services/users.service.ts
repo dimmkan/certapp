@@ -13,7 +13,7 @@ export class UsersService{
   users: User[] = []
 
   constructor(public http: HttpClient) {
-    this.http.get<User[]>('http://certapi.vybor.local/users')
+    this.http.get<User[]>('http://nodecertapi.vybor.local:3000/users')
       .subscribe(response =>{
         this.users = response
       })

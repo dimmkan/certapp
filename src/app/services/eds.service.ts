@@ -30,7 +30,7 @@ export class EdsService{
   }
 
   reloadEdses(){
-    this.http.get<Edses[]>('http://certapi.vybor.local/eds')
+    this.http.get<Edses[]>('http://nodecertapi.vybor.local:3000/eds')
       .subscribe(response =>{
         this.edses = response
       })

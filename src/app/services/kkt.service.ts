@@ -31,7 +31,7 @@ export class KktService {
   }
 
   reloadKktes() {
-    this.http.get<Kktes[]>('http://certapi.vybor.local/kkt')
+    this.http.get<Kktes[]>('http://nodecertapi.vybor.local:3000/kkt')
       .subscribe(response =>{
         this.kktes = response
       })

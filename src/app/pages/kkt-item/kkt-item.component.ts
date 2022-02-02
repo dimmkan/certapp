@@ -45,7 +45,7 @@ export class KktItemComponent implements OnInit {
 
   deleteKkt() {
     this.route.params.subscribe((params: Params) => {
-      this.kktService.http.delete(`http://certapi.vybor.local/kkt/delete/${params.id}`)
+      this.kktService.http.delete(`http://nodecertapi.vybor.local:3000/kkt/delete/${params.id}`)
         .subscribe(
           () => {
             this.kktService.kktes = this.kktService.kktes.filter(p => p.id != +params.id)
@@ -57,8 +57,7 @@ export class KktItemComponent implements OnInit {
 
   updateKkt() {
     this.route.params.subscribe((params: Params) => {
-      this.kktService.http.put(`http://certapi.vybor.local/kkt/update/${params.id}`, {
-        id: params.id.toString(),
+      this.kktService.http.put(`http://nodecertapi.vybor.local:3000/kkt/update/${params.id}`, {
         organization: this.kkt.organization,
         regNumber: this.kkt.regNumber,
         zavNumber: this.kkt.zavNumber,
