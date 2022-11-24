@@ -77,6 +77,17 @@ export class EdsComponent implements OnInit {
       )
   }
 
+  deleteOpenPartFile($event: MouseEvent) {
+    //@ts-ignore
+    let id = $event.target.id.substr(4)
+    this.edsService.http.delete(`http://nodecertapi.vybor.local:3000/eds/deleteopenpartfile/${id}`)
+      .subscribe(
+        response => {
+          this.edsService.reloadEdses()
+        }
+      )
+  }
+
   onFileChanged($event: Event) {
     //@ts-ignore
     const selectedFile = $event.target.files[0]
@@ -85,6 +96,20 @@ export class EdsComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('file', selectedFile, selectedFile.name)
     this.edsService.http.post(`http://nodecertapi.vybor.local:3000/eds/addfile/${id}`, uploadData)
+      .subscribe(response => {
+          this.edsService.reloadEdses()
+        }
+      );
+  }
+
+  onOpenPartFileChanged($event: Event) {
+    //@ts-ignore
+    const selectedFile = $event.target.files[0]
+    //@ts-ignore
+    const id = $event.target.id.substr(3)
+    const uploadData = new FormData();
+    uploadData.append('file', selectedFile, selectedFile.name)
+    this.edsService.http.post(`http://nodecertapi.vybor.local:3000/eds/addopenpartfile/${id}`, uploadData)
       .subscribe(response => {
           this.edsService.reloadEdses()
         }

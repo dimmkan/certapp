@@ -23,6 +23,7 @@
         <th scope="col" (click)="edsService.sortEds('toDate', edsSortToDate); edsSortToDate = !edsSortToDate">Срок до</th>
         <th scope="col">Примечание</th>
         <th scope="col">Файл</th>
+        <th scope="col">Открытая часть</th>
       </tr>
       <tr>
         <th scope="col"></th>
@@ -37,6 +38,7 @@
         <th scope="col"><input type="text" [(ngModel)]="edsFilter.usageType" placeholder="Применение"></th>
         <th scope="col"><input type="date" [(ngModel)]="edsFilter.fromDate" placeholder="Срок с"></th>
         <th scope="col"><input type="date" [(ngModel)]="edsFilter.toDate" placeholder="Срок по"></th>
+        <th scope="col"></th>
         <th scope="col"></th>
         <th scope="col"></th>
       </tr>
@@ -83,6 +85,28 @@
             id="f{{eds.id}}"
             #qInput>
           <button *ngIf="!eds.fileName" class="btn btn-outline-dark btn-sm" (click)="qInput.click()">
+            Загрузить
+          </button>
+        </td>
+        <td>
+          <div class="row justify-content-end">
+            <button
+              *ngIf="eds.openPartFileName"
+              type="button" class="close" aria-label="Закрыть"
+              (click)="deleteOpenPartFile($event)">
+              <span aria-hidden="true" id="dopf{{eds.id}}">&times;</span>
+            </button>
+          </div>
+          <div class="row">
+            <a *ngIf="eds.openPartFileName"
+               href="http://nodecertapi.vybor.local:3000/eds/downloadopenpart/{{eds.id}}">{{eds.openPartFileName}}</a>
+          </div>
+          <input
+            style="display: none"
+            type="file" (change)="onOpenPartFileChanged($event)"
+            id="opf{{eds.id}}"
+            #oqInput>
+          <button *ngIf="!eds.openPartFileName" class="btn btn-outline-dark btn-sm" (click)="oqInput.click()">
             Загрузить
           </button>
         </td>

@@ -15,7 +15,8 @@ export interface Edses {
   fromDate: Date,
   toDate: Date,
   comment: string,
-  fileName: string
+  fileName: string,
+  openPartFileName: string
 }
 
 @Injectable({providedIn: 'root'})
