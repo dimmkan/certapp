@@ -15,6 +15,8 @@ export class EdsComponent implements OnInit {
   edsFilter: any = {}
   edsSortToDate: boolean = false;
   edsSortAccountId: boolean = false;
+  edsSortOrganization: boolean = false;
+  edsSortFullName: boolean = false;
 
   constructor(
     public edsService: EdsService,

@@ -11,7 +11,6 @@ export interface Kktes {
   kktModel: string,
   regDate: Date,
   toDate: Date,
-  toDateOF: Date,
   ofd: string,
   fnModel: string,
   zavNumberFN: string,

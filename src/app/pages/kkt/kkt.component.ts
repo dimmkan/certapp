@@ -15,7 +15,6 @@ export class KktComponent implements OnInit {
   currentPg: any;
   kktFilter: any = {};
   kktSortToDate = false;
-  kktSortToDateOF: boolean = false;
 
   constructor(
     public kktService: KktService,
@@ -30,7 +29,6 @@ export class KktComponent implements OnInit {
       kktModel: new FormControl('', Validators.required),
       regDate: new FormControl(null, Validators.required),
       toDate: new FormControl(null, Validators.required),
-      toDateOF: new FormControl(null, Validators.required),
       ofd: new FormControl('', Validators.required),
       fnModel: new FormControl('', Validators.required),
       zavNumberFN: new FormControl('', Validators.required),
@@ -47,7 +45,6 @@ export class KktComponent implements OnInit {
       kktModel: formData.kktModel,
       regDate: formData.regDate,
       toDate: formData.toDate,
-      toDateOF: formData.toDateOF,
       ofd: formData.ofd,
       fnModel: formData.fnModel,
       zavNumberFN: formData.zavNumberFN,

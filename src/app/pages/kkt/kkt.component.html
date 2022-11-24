@@ -17,7 +17,6 @@
         <th scope="col">Модель</th>
         <th scope="col">Дата регистрации</th>
         <th scope="col" (click)="kktService.sortKkt('toDate', kktSortToDate); kktSortToDate = !kktSortToDate">Срок действия</th>
-        <th scope="col" (click)="kktService.sortKkt('toDateOF', kktSortToDateOF); kktSortToDateOF = !kktSortToDateOF">Срок действия ОФ</th>
         <th scope="col">ОФД</th>
         <th scope="col">Модель ФН</th>
         <th scope="col">Заводской № ФН</th>
@@ -31,8 +30,7 @@
         <th scope="col"></th>
         <th scope="col"><input type="text" [(ngModel)]="kktFilter.kktModel" placeholder="Модель"></th>
         <th scope="col"><input type="date" [(ngModel)]="kktFilter.regDate" placeholder="Дата рег."></th>
-        <th scope="col"><input type="date" [(ngModel)]="kktFilter.regDate" placeholder="Дата рег."></th>
-        <th scope="col"></th>
+        <th scope="col"><input type="date" [(ngModel)]="kktFilter.toDate" placeholder="Дата"></th>
         <th scope="col"><input type="text" [(ngModel)]="kktFilter.ofd" placeholder="ОФД"></th>
         <th scope="col"><input type="text" [(ngModel)]="kktFilter.fnModel" placeholder="Модель ФН"></th>
         <th scope="col"><input type="text" [(ngModel)]="kktFilter.zavNumberFN" placeholder="Зав. №"></th>
@@ -57,7 +55,6 @@
         <th scope="col">{{ kkt.kktModel }}</th>
         <th scope="col">{{ kkt.regDate | date: "dd.MM.y"}}</th>
         <th scope="col">{{ kkt.toDate | date: "dd.MM.y"}}</th>
-        <th scope="col">{{ kkt.toDateOF | date: "dd.MM.y"}}</th>
         <th scope="col">{{ kkt.ofd }}</th>
         <th scope="col">{{ kkt.fnModel }}</th>
         <th scope="col">{{ kkt.zavNumberFN }}</th>
@@ -122,13 +119,6 @@
             <label for="inputToDate" class="col-sm-2 col-form-label">Срок дейст.</label>
             <div class="col-sm-10">
               <input type="date" class="form-control" id="inputToDate" placeholder="Срок дейст." formControlName="toDate">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputToDateOF" class="col-sm-2 col-form-label">Срок дейст. ОФ</label>
-            <div class="col-sm-10">
-              <input type="date" class="form-control" id="inputToDateOF" placeholder="Срок дейст. ОФ"
-                     formControlName="toDateOF">
             </div>
           </div>
           <div class="form-group row">
